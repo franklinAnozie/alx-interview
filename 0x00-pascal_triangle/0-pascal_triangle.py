@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ An implementation of Paschal's Triangle in Python """
 
+
 def pascal_triangle(n):
     """ function definition of paschal triangle """
     if n <= 0:
