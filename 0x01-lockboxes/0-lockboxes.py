@@ -1,19 +1,18 @@
 #!/usr/bin/python3
 """ lockboxes algo """
 
-def canUnlockAll(boxes=[[]]):
-    if all(type(box) == list for box in boxes):
-        opened = [0]
-        for num in range(len(boxes)):
-            closed = boxes[num]
-            while len(closed) > 0:
-                key = closed.pop()
-                if key not in opened:
-                    opened.append(key)
-        print(opened)
-    else:
-        return False
 
-if __name__ == "__main__":
-    boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
-    canUnlockAll(boxes)
+def canUnlockAll(boxes):
+    n = len(boxes)
+    opened = []
+    keys = [0]
+
+    while keys:
+        current_key = keys.pop()
+        if current_key not in opened:
+            opened.append(current_key)
+            for key in boxes[current_key]:
+                if key not in keys and key not in opened:
+                    keys.append(key)
+
+    return len(opened) == n
