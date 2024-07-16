@@ -23,7 +23,7 @@ def readln():
                             print(f"{key}: {stat_code_dict[key]}")
                     count = 0
             else:
-                continue
+                pass
     except KeyboardInterrupt:
         print(f"File size: {Expected_Line.get_total_file_size()}")
         stat_code_dict = Expected_Line.get_status_code_count()
