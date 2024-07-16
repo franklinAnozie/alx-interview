@@ -15,13 +15,14 @@ def readln():
                 new_line.set_total_file_size(int(new_line.size))
                 new_line.set_status_code_count(int(new_line.status))
                 count += 1
-                if count == 10:
+                if count <= 10:
                     print(f"File size: {Expected_Line.get_total_file_size()}")
                     stat_code_dict = Expected_Line.get_status_code_count()
                     for key in stat_code_dict:
                         if stat_code_dict[key] > 0:
                             print(f"{key}: {stat_code_dict[key]}")
                     count = 0
+                    sys.stdout.flush() 
             else:
                 pass
     except KeyboardInterrupt:
@@ -29,7 +30,7 @@ def readln():
         stat_code_dict = Expected_Line.get_status_code_count()
         for key in stat_code_dict:
             print(f"{key}: {stat_code_dict[key]}")
-        raise
+        sys.exit(0)
 
 
 class Expected_Line():
@@ -78,17 +79,17 @@ class Expected_Line():
         return cls.__total_file_size
 
     @classmethod
-    def set_total_file_size(cls, value: int):
+    def set_total_file_size(cls, value: int) -> None:
         """ Class method to set the value of the file size """
         cls.__total_file_size += value
 
     @classmethod
-    def get_status_code_count(cls) -> int:
+    def get_status_code_count(cls) -> dict:
         """ class method to retrieve the status codes data """
         return cls.__status_code_count
 
     @classmethod
-    def set_status_code_count(cls, status_code: int) -> int:
+    def set_status_code_count(cls, status_code: int) -> None:
         """ class method to set the value of the status codes """
         if status_code in cls.__status_code_count:
             cls.__status_code_count[status_code] += 1
