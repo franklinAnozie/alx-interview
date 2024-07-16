@@ -6,7 +6,7 @@ import re
 
 
 def readln():
-    """ Reads content of stdin and prints out after 10 lines"""
+    """ Reads content of stdin and prints out after 10 lines """
     count = 0
     try:
         for line in sys.stdin:
@@ -29,14 +29,15 @@ def readln():
         stat_code_dict = Expected_Line.get_status_code_count()
         for key in stat_code_dict:
             print(f"{key}: {stat_code_dict[key]}")
+        raise
 
 
 class Expected_Line():
     """
     Class to construct the data structure and save their info
     """
-    __total_file_size: int = 0
-    __status_code_count: dict = {
+    __total_file_size = 0
+    __status_code_count = {
         200: 0,
         301: 0,
         400: 0,
