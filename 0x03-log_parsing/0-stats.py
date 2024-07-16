@@ -15,7 +15,7 @@ def readln():
                 new_line.set_total_file_size(int(new_line.size))
                 new_line.set_status_code_count(int(new_line.status))
                 count += 1
-                if count <= 10:
+                if count == 10:
                     print(f"File size: {Expected_Line.get_total_file_size()}")
                     stat_code_dict = Expected_Line.get_status_code_count()
                     for key in stat_code_dict:
@@ -25,6 +25,11 @@ def readln():
                     sys.stdout.flush()
             else:
                 pass
+        print(f"File size: {Expected_Line.get_total_file_size()}")
+        stat_code_dict = Expected_Line.get_status_code_count()
+        for key in stat_code_dict:
+            if stat_code_dict[key] > 0:
+                print(f"{key}: {stat_code_dict[key]}")
     except KeyboardInterrupt:
         print(f"File size: {Expected_Line.get_total_file_size()}")
         stat_code_dict = Expected_Line.get_status_code_count()
