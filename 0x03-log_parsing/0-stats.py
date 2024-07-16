@@ -22,7 +22,7 @@ def readln():
                         if stat_code_dict[key] > 0:
                             print(f"{key}: {stat_code_dict[key]}")
                     count = 0
-                    sys.stdout.flush() 
+                    sys.stdout.flush()
             else:
                 pass
     except KeyboardInterrupt:
