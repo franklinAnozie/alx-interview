@@ -22,7 +22,10 @@ def readln():
             new_line = Expected_Line(line)
             if new_line.match_status():
                 new_line.set_total_file_size(int(new_line.size))
-                new_line.set_status_code_count(int(new_line.status))
+                try:
+                    new_line.set_status_code_count(int(new_line.status))
+                except Exception as e:
+                    pass
                 count += 1
                 if count == 10:
                     println()
@@ -58,7 +61,7 @@ class Expected_Line():
             (?P<ip>.*?)
             \[(?P<date>.+?)\]                    # Date
             \s"GET\s/projects/260\sHTTP/1\.1"\s  # HTTP Request
-            (?P<status>\d{3})                    # Status Code
+            (?P<status>.*)                    # Status Code
             \s
             (?P<size>\d+)                        # File Size
         """, re.VERBOSE)
