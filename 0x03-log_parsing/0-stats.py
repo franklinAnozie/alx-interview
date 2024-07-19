@@ -5,6 +5,15 @@ import sys
 import re
 
 
+def println():
+    """ Prints a line """
+    print(f"File size: {Expected_Line.get_total_file_size()}")
+    stat_code_dict = Expected_Line.get_status_code_count()
+    for key in stat_code_dict:
+        if stat_code_dict[key] > 0:
+            print(f"{key}: {stat_code_dict[key]}")
+
+
 def readln():
     """ Reads content of stdin and prints out after 10 lines """
     count = 0
@@ -16,25 +25,14 @@ def readln():
                 new_line.set_status_code_count(int(new_line.status))
                 count += 1
                 if count == 10:
-                    print(f"File size: {Expected_Line.get_total_file_size()}")
-                    stat_code_dict = Expected_Line.get_status_code_count()
-                    for key in stat_code_dict:
-                        if stat_code_dict[key] > 0:
-                            print(f"{key}: {stat_code_dict[key]}")
+                    println()
                     count = 0
                     sys.stdout.flush()
             else:
                 pass
-        print(f"File size: {Expected_Line.get_total_file_size()}")
-        stat_code_dict = Expected_Line.get_status_code_count()
-        for key in stat_code_dict:
-            if stat_code_dict[key] > 0:
-                print(f"{key}: {stat_code_dict[key]}")
+        println()
     except KeyboardInterrupt:
-        print(f"File size: {Expected_Line.get_total_file_size()}")
-        stat_code_dict = Expected_Line.get_status_code_count()
-        for key in stat_code_dict:
-            print(f"{key}: {stat_code_dict[key]}")
+        println()
         sys.exit(0)
 
 
@@ -57,8 +55,7 @@ class Expected_Line():
     def __init__(self, line_read: str) -> None:
         """ init method """
         log_pattern = re.compile(r"""
-            (?P<ip>\d{1,3}(?:\.\d{1,3}){3})      # IP Address
-            \s-\s
+            (?P<ip>.*?)
             \[(?P<date>.+?)\]                    # Date
             \s"GET\s/projects/260\sHTTP/1\.1"\s  # HTTP Request
             (?P<status>\d{3})                    # Status Code
