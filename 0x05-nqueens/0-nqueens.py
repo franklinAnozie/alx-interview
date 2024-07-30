@@ -4,7 +4,7 @@
 import sys
 
 
-def is_point_safe(board: list[list], n: int, col: int) -> bool:
+def is_point_safe(board, n, col):
     """ checking if point is safe """
     for i in range(n):
         if board[i][1] == col or \
@@ -14,8 +14,7 @@ def is_point_safe(board: list[list], n: int, col: int) -> bool:
     return True
 
 
-def recurse(board: list[list],
-            n: int, N: int, solutions: list[list[list]]) -> None:
+def recurse(board, n, N, solutions):
     """ recursively placing queen """
     if n == N:
         solutions.append([row[:] for row in board])
@@ -26,10 +25,10 @@ def recurse(board: list[list],
                 recurse(board, n+1, N, solutions)
 
 
-def nqueens(N: int) -> list[list[list]]:
+def nqueens(N):
     """ fxn entry point """
-    board: list[list] = [[i, -1] for i in range(N)]
-    solutions: list[list[list]] = []
+    board = [[i, -1] for i in range(N)]
+    solutions = []
     recurse(board, 0, N, solutions)
     return solutions
 
