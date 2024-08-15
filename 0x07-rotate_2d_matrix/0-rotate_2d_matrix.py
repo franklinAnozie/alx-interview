@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ rotate matrix 90 degrees """
 
 from typing import List
