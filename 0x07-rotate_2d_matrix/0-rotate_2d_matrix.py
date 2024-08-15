@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" rotate matrix 90 degrees """
+"""rotate matrix 90 degrees
+"""
 
 
 def rotate_matrix(matrix: list[list[int]]) -> list[list[int]]:
