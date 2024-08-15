@@ -4,7 +4,7 @@ rotate matrix 90 degrees
 """
 
 
-def rotate_2d_matrix(matrix: list[list[int]]) -> list[list[int]]:
+def rotate_2d_matrix(matrix):
     """
     rotates a 2 by 2 matrix by 90 degrees
     """
