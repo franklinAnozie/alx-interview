@@ -1,10 +1,13 @@
 #!/usr/bin/python3
-"""rotate matrix 90 degrees
+"""
+rotate matrix 90 degrees
 """
 
 
 def rotate_matrix(matrix: list[list[int]]) -> list[list[int]]:
-    """ rotates a 2 by 2 matrix by 90 degrees """
+    """
+    rotates a 2 by 2 matrix by 90 degrees
+    """
     n = len(matrix)
 
     for layer in range(n // 2):
