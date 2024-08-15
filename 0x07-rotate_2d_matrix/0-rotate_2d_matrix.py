@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 """ rotate matrix 90 degrees """
 
-from typing import List
 
-
-def rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:
+def rotate_matrix(matrix: list[list[int]]) -> list[list[int]]:
     """ rotates a 2 by 2 matrix by 90 degrees """
     n = len(matrix)
 
