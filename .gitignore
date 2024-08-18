@@ -6,4 +6,6 @@ test.py
 venv
 file.txt
 1-nqueens.py
-
+node_modules
+*.json
+another_solution.js
