@@ -4,14 +4,13 @@
 
 def makeChange(coins, total):
     """ makeChange Algo """
-    if total <= 0:
-        return 0
+    coins.sort(reverse=True)
 
-    dp = [float('inf')] * (total + 1)
-    dp[0] = 0
-
+    num_coins = 0
     for coin in coins:
-        for x in range(coin, total + 1):
-            dp[x] = min(dp[x], dp[x - coin] + 1)
-
-    return dp[total] if dp[total] != float('inf') else -1
+        if total <= 0:
+            break
+        count = total // coin
+        num_coins += count
+        total -= count * coin
+    return num_coins if total == 0 else -1
