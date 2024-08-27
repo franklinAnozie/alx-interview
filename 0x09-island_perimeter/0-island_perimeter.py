@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 """ island perimeter algo """
 
-from typing import List
 
-
-def island_perimeter(grid: List[List[int]]) -> int:
+def island_perimeter(grid):
     """ island perimeter function """
     count = 0
     for i in range(len(grid)):
