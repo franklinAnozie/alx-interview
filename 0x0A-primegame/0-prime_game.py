@@ -1,10 +1,13 @@
 #!/usr/bin/python3
+""" prime numbers game """
 
 def makeSetInRound(num):
+    """ makes the sets """
     return set(range(1, num + 1))
 
 
 def isPrime(num):
+    """ checks if a number is prime """
     if num <= 1:
         return False
     if num <= 3:
@@ -20,6 +23,7 @@ def isPrime(num):
 
 
 def isWinner(x, nums):
+    """ assigns winner """
     winner = {"Maria": 0, "Ben": 0}
 
     for round in range(x):
