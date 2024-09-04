@@ -14,6 +14,7 @@ def sieve_of_eratosthenes(max_num):
     return [p for p in range(max_num + 1) if is_prime[p]]
 
 def isWinner(x, nums):
+    """ generates winner """
     max_n = max(nums)
     primes = sieve_of_eratosthenes(max_n)
     
