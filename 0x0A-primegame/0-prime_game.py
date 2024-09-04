@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 """ prime numbers game """
 
+
 def sieve_of_eratosthenes(max_num):
-    """ Generate a list of primes up to max_num using the Sieve of Eratosthenes. """
+    """ Generate a list of primes up to max_num
+    using the Sieve of Eratosthenes. """
+
     is_prime = [True] * (max_num + 1)
     is_prime[0] = is_prime[1] = False
     p = 2
@@ -13,18 +16,19 @@ def sieve_of_eratosthenes(max_num):
         p += 1
     return [p for p in range(max_num + 1) if is_prime[p]]
 
+
 def isWinner(x, nums):
     """ generates winner """
     max_n = max(nums)
     primes = sieve_of_eratosthenes(max_n)
-    
+
     def play_game(n):
         """ Simulate the game for a given n and return the winner. """
         removed = [False] * (n + 1)
-        
+
         turn = 0  # 0 for Maria, 1 for Ben
         remaining_primes = primes
-        
+
         for prime in remaining_primes:
             if prime > n:
                 break
@@ -33,13 +37,13 @@ def isWinner(x, nums):
                     removed[multiple] = True
                 turn = 1 - turn
         return "Ben" if turn == 0 else "Maria"
-    
+
     winner_count = {"Maria": 0, "Ben": 0}
-    
+
     for n in nums:
         winner = play_game(n)
         winner_count[winner] += 1
-    
+
     if winner_count["Maria"] > winner_count["Ben"]:
         return "Maria"
     elif winner_count["Ben"] > winner_count["Maria"]:
