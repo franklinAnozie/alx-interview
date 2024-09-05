@@ -1,52 +1,48 @@
 #!/usr/bin/python3
-""" prime numbers game """
+"""
+prime_game module
+"""
 
 
-def sieve_of_eratosthenes(max_num):
-    """ Generate a list of primes up to max_num
-    using the Sieve of Eratosthenes. """
-
-    is_prime = [True] * (max_num + 1)
-    is_prime[0] = is_prime[1] = False
-    p = 2
-    while p * p <= max_num:
-        if is_prime[p]:
-            for i in range(p * p, max_num + 1, p):
-                is_prime[i] = False
-        p += 1
-    return [p for p in range(max_num + 1) if is_prime[p]]
+def builPrimesArray(n):
+    '''
+        builds an array up to n where the index
+        of prime numbers are set true and others to false
+    '''
+    if n <= 0:
+        return []
+    testArray = [True for i in range(n + 1)]
+    testArray[0], testArray[1] = False, False
+    i = 2
+    while(i * i <= n):
+        if testArray[i]:
+            for j in range(i * i, n + 1, i):
+                testArray[j] = False
+        i += 1
+    return testArray
 
 
 def isWinner(x, nums):
-    """ generates winner """
-    max_n = max(nums)
-    primes = sieve_of_eratosthenes(max_n)
+    '''
+        determins the winner betwent Maria and Ben in game
+        of selecting prime numbers up to n for x round
+    '''
+    if x <= 0 or nums is None:
+        return
 
-    def play_game(n):
-        """ Simulate the game for a given n and return the winner. """
-        removed = [False] * (n + 1)
-
-        turn = 0  # 0 for Maria, 1 for Ben
-        remaining_primes = primes
-
-        for prime in remaining_primes:
-            if prime > n:
-                break
-            if not removed[prime]:
-                for multiple in range(prime, n + 1, prime):
-                    removed[multiple] = True
-                turn = 1 - turn
-        return "Ben" if turn == 0 else "Maria"
-
-    winner_count = {"Maria": 0, "Ben": 0}
-
-    for n in nums:
-        winner = play_game(n)
-        winner_count[winner] += 1
-
-    if winner_count["Maria"] > winner_count["Ben"]:
-        return "Maria"
-    elif winner_count["Ben"] > winner_count["Maria"]:
-        return "Ben"
+    numsL = len(nums)
+    primes = builPrimesArray(max(nums))
+    Maria = 0
+    Ben = 0
+    for round in range(x):
+        valid = [n for n in range(2, nums[round % numsL] + 1) if primes[n]]
+        if len(valid) % 2 == 1:
+            Maria += 1
+        else:
+            Ben += 1
+    if Ben == Maria:
+        return
+    elif Ben > Maria:
+        return 'Ben'
     else:
-        return None
+        return 'Maria'
